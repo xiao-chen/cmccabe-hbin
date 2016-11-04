@@ -329,12 +329,14 @@ func gitCommand(outFile string, printErr bool, args ...string) error {
 }
 var branchName *string = flag.String("b", "", "the branch to look for " +
 	"commits in")
-var regexStr *string = flag.String("r", "(HDFS-[0123456789]*)[^0123456789]",
+var regexStr *string = flag.String("r", "(HDFS-[0123456789]*)",
 	"the regular expression to use to determine which commits to examine")
 var ignoreFile *string = flag.String("i", "",
-	"a file containing a newline-separated list of JIRAs to ignore.  If you " +
-	"are using a regex with a backrefernece, each line should contain the " +
-	"contents")
+	"a file containing a newline-separated list of JIRAs to ignore. " +
+        "The first column should be commit hash, the second column should be" +
+        " jira number, optionally followed by commit text. A space should be" +
+        " used to separate the two columns. If you are using a regex with a " +
+        "backrefernece, each line should contain the contents")
 var associatedSvnRepo *string = flag.String("s", "",
 	"optional local directory with an associated subversion repository.  " +
 	"This will be used to make 'merging change rXYZ messages' more helpful.")
